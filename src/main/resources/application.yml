@@ -1,0 +1,5 @@
+spring.banner.location: classpath:static/umbrella-banner.txt
+
+openweathermap:
+    host: api.openweathermap.org
+    apiKey: YOUR_API_KEY
