@@ -37,7 +37,3 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-
-tasks.register<org.springframework.boot.gradle.tasks.run.BootRun>("bootRunMock") {
-    args("--spring.profiles.active=mock")
-}
