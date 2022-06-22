@@ -1,6 +1,6 @@
 package org.dnltsk.umbrellasuggester
 
-import org.dnltsk.umbrellasuggester.openweathermap.CurrentWeatherCache
+import org.dnltsk.umbrellasuggester.openweathermap.CurrentWeatherHistory
 import org.dnltsk.umbrellasuggester.openweathermap.IOwmClient
 import org.dnltsk.umbrellasuggester.openweathermap.UmbrellaSuggester
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,7 +16,7 @@ class RequestHandler {
     private lateinit var umbrellaSuggester: UmbrellaSuggester
 
     @Autowired
-    private lateinit var cache: CurrentWeatherCache
+    private lateinit var history: CurrentWeatherHistory
 
     fun loadWeatherSituation(locationName: String): WeatherSituation {
         val geocodeResponse = owmClient.receiveLocation(locationName)
@@ -31,15 +31,15 @@ class RequestHandler {
             )
         }
 
-        cache.addWeatherSituation(locationName, result)
+        history.addWeatherSituation(locationName, result)
 
         return result
     }
 
     fun loadWeatherHistory(locationName: String): WeatherHistory {
-        val history = cache.getHistory(locationName)
+        val history = history.getHistory(locationName)
         if (history.isEmpty()) {
-            return loadSituationToFillCache(locationName)
+            return loadSituationToFillHistory(locationName)
         }
         return WeatherHistory(
             avgTemp = history.map { it.temp }.average(),
@@ -48,7 +48,7 @@ class RequestHandler {
         )
     }
 
-    private fun loadSituationToFillCache(locationName: String): WeatherHistory {
+    private fun loadSituationToFillHistory(locationName: String): WeatherHistory {
         this.loadWeatherSituation(locationName)
         return this.loadWeatherHistory(locationName)
     }
