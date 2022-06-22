@@ -14,13 +14,13 @@ class HttpController {
 
     @GetMapping("/current")
     fun getCurrent(@RequestParam(name = "location") locationName: String) : ResponseEntity<WeatherSituation> {
-        val weatherSituation = requestHandler.loadWeatherSituation(locationName)
+        val weatherSituation = requestHandler.loadWeatherSituation(locationName.lowercase())
         return ResponseEntity.ok(weatherSituation)
     }
 
     @GetMapping("/history")
     fun getHistory(@RequestParam(name = "location") locationName: String) : ResponseEntity<WeatherHistory> {
-        val weatherHistory = requestHandler.loadWeatherHistory(locationName)
+        val weatherHistory = requestHandler.loadWeatherHistory(locationName.lowercase())
         return ResponseEntity.ok(weatherHistory)
     }
 
