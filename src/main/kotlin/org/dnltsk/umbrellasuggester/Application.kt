@@ -54,7 +54,6 @@ class JacksonConfiguration {
             this.objectMapper = ObjectMapper().apply {
                 registerModule(
                     KotlinModule.Builder()
-                        .withReflectionCacheSize(512)
                         .configure(KotlinFeature.NullToEmptyCollection, false)
                         .configure(KotlinFeature.NullToEmptyMap, false)
                         .configure(KotlinFeature.NullIsSameAsDefault, false)
