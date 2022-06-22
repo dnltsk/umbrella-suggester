@@ -24,11 +24,11 @@ class HttpControllerTest {
     }
 
     @Test
-    fun `getCurrent forwards the locationName to RequestHandler`() {
+    fun `getCurrent forwards the locationName in lowercase to RequestHandler`() {
         //when
         httpController.getCurrent(sampleLocationName)
         //then
-        verify(requestHandler).loadWeatherSituation(sampleLocationName)
+        verify(requestHandler).loadWeatherSituation("berlin")
     }
 
     @Test
@@ -45,11 +45,11 @@ class HttpControllerTest {
     }
 
     @Test
-    fun `getHistory forwards the cityName to RequestHandler`() {
+    fun `getHistory forwards the locationName in lowercase to RequestHandler`() {
         //when
         httpController.getHistory(sampleLocationName)
         //then
-        verify(requestHandler).loadWeatherHistory(sampleLocationName)
+        verify(requestHandler).loadWeatherHistory("berlin")
     }
 
     @Test
