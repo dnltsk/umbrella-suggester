@@ -34,22 +34,23 @@ alternatively, just use the interactive Swagger UI
 3. used the JsonToKotlinClass IntelliJ Plugin to generate the OpenWeatherMap API data modells
 4. added AssertJ and Mockito, Configured Jackson
 5. implemented /current endpoint with mock data
-6. implemented /history endpoint with mock data via caching
+6. implemented /history endpoint with mock data
 7. implemented the real client
 8. improved namings, mappings and test data
 9. added SwaggerUI
 
 # What would I improve in order to have production READY
 
-1. testing of RequestMapper (skipped for time reasons)
-2. reasonable error handling handling via `@ExceptionHandler`
-3. CI via Github Action
-4. dockerize as multi-stage build
-5. CD (see below)
-6. store and use apiKey as Secret
-7. alerting, e.g. via Sentry
-8. externalize cache, e.g. DynamoDB
-9. implement monitoring via Prometheus and Grafana
+2. testing of RequestMapper (skipped for time reasons)
+3. reasonable error handling handling via `@ExceptionHandler`
+1. add /actuator endpoints via micrometer
+4. ~~CI via Github Action~~
+5. dockerize as multi-stage build
+6. CD (see below)
+7. store and use apiKey as Secret
+8. alerting, e.g. via Sentry
+9. externalize cache, e.g. DynamoDB
+10. implement monitoring via Prometheus and Grafana
 
 # How would I deploy the application in the context of a multi-environment CI/CD pipeline
 
