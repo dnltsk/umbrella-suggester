@@ -6,12 +6,12 @@ import org.dnltsk.umbrellasuggester.sampleLocationName
 import org.junit.jupiter.api.Test
 
 
-class CurrentWeatherCacheTest {
+class CurrentWeatherHistoryTest {
 
-    private val underTest = CurrentWeatherCache()
+    private val underTest = CurrentWeatherHistory()
 
     @Test
-    fun `last 5 weather situations are stored on cache`() {
+    fun `only last 5 weather situations are stored in history`() {
         // given
         val ws1 = WeatherSituation(temp = 1.0, pressure = 100.0, umbrella = true)
         val ws2 = WeatherSituation(temp = 2.0, pressure = 200.0, umbrella = false)
@@ -34,7 +34,7 @@ class CurrentWeatherCacheTest {
     }
 
     @Test
-    fun `cache returns empty list if location was never requested before`() {
+    fun `history returns empty list if location was never requested before`() {
         //when
         val history = underTest.getHistory(sampleLocationName)
 
